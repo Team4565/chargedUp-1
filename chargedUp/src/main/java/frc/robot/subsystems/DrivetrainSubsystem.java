@@ -35,7 +35,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public DrivetrainSubsystem() {
 
     leftLead = new CANSparkMax(DrivetrainConstants.kDrivetrainCANIDs[0], MotorType.kBrushless);
-    rightLead = new CANSparkMax(DrivetrainConstants.kDrivetrainCANIDs[1], MotorType.kBrushless);
+    rightLead = new CANSparkMax(DrivetrainConstants.kDrivetrainCANIDs[2], MotorType.kBrushless);
     // leftFollower = new CANSparkMax(Constants.DrivetrainConstants.kDrivetrainCANIDs[2], MotorType.kBrushless);
     // rightFollower = new CANSparkMax(Constants.DrivetrainConstants.kDrivetrainCANIDs[3], MotorType.kBrushless);
 
@@ -44,7 +44,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     
     // todo: uncomment for conversion
     // encoderLeftLead.setPositionConversionFactor(DrivetrainConstants.kTicksToFeat);
-    encoderLeftLead.setInverted(DrivetrainConstants.kLeftInverted);
+    // encoderLeftLead.setInverted(DrivetrainConstants.kLeftInverted);
 
      //Uncomment for follower
     // leftFollower.follow(leftLead);
@@ -53,7 +53,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     // todo: uncomment for conversion
     // encoderRightLead.setPositionConversionFactor(DrivetrainConstants.kTicksToFeat);
-    encoderRightLead.setInverted(DrivetrainConstants.kRightInverted);
+    // encoderRightLead.setInverted(DrivetrainConstants.kRightInverted);
 
     //Uncomment for follower
     // rightFollower.follow(rightLead);

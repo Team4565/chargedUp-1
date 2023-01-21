@@ -38,4 +38,12 @@ public final class Constants {
     public static final double kTurnD = 0;
     public static final double kTurnTolerance = 0;
   }
+
+  public static class ArmConstants{
+    public static final int[] armCANIDs = new int[] {2};
+    public static final double kArmP = 0.5;
+    public static final double kArmI = 0;
+    public static final double kArmD = 0;
+    public static final double kArmTolerance = 3;
+  }
 }
