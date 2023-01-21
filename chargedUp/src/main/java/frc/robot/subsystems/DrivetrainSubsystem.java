@@ -10,6 +10,7 @@ import com.revrobotics.SparkMaxRelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.hal.SimDevice;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,6 +23,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private static CANSparkMax rightLead;
   private static CANSparkMax leftFollower;
   private static CANSparkMax rightFollower;
+  private static SimDevice leftLeadSim;
+  private static SimDevice rightLeadSim;
 
 
   private static RelativeEncoder encoderLeftLead;
