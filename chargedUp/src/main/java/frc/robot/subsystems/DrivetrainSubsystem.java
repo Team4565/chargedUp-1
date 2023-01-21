@@ -36,24 +36,27 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     leftLead = new CANSparkMax(DrivetrainConstants.kDrivetrainCANIDs[0], MotorType.kBrushless);
     rightLead = new CANSparkMax(DrivetrainConstants.kDrivetrainCANIDs[1], MotorType.kBrushless);
-    // leftFollower = new CANSparkMax(Constants.DrivetrainConstants.kDrivetrainCANIDs[2], MotorType.kBrushless);
-    // rightFollower = new CANSparkMax(Constants.DrivetrainConstants.kDrivetrainCANIDs[3], MotorType.kBrushless);
+    leftFollower = new CANSparkMax(DrivetrainConstants.kDrivetrainCANIDs[2], MotorType.kBrushless);
+    rightFollower = new CANSparkMax(DrivetrainConstants.kDrivetrainCANIDs[3], MotorType.kBrushless);
 
     leftLead.setIdleMode(IdleMode.kBrake);
+    leftFollower.setIdleMode(IdleMode.kBrake);
     encoderLeftLead = leftLead.getEncoder();
     
     // todo: uncomment for conversion
     // encoderLeftLead.setPositionConversionFactor(DrivetrainConstants.kTicksToFeat);
-    encoderLeftLead.setInverted(DrivetrainConstants.kLeftInverted);
+    // encoderLeftLead.setInverted(DrivetrainConstants.kLeftInverted);
 
      //Uncomment for follower
     // leftFollower.follow(leftLead);
 
+    rightLead.setIdleMode(IdleMode.kBrake);
+    rightFollower.setIdleMode(IdleMode.kBrake);
     encoderRightLead = rightLead.getEncoder();
 
     // todo: uncomment for conversion
     // encoderRightLead.setPositionConversionFactor(DrivetrainConstants.kTicksToFeat);
-    encoderRightLead.setInverted(DrivetrainConstants.kRightInverted);
+    // encoderRightLead.setInverted(DrivetrainConstants.kRightInverted);
 
     //Uncomment for follower
     // rightFollower.follow(rightLead);
