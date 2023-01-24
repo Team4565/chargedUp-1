@@ -10,12 +10,13 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 // import frc.robot.commands.targetFinding;
 import frc.robot.commands.DrivetrainPID.MovePID;
-// import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 // import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -33,7 +34,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
   // private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
-  // private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
+  private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
 
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -61,15 +62,20 @@ public class RobotContainer {
    */
   private void configureBindings() {
     //Spins Motor if April Tags are Recognized for 20 Ticks
-    // new JoystickButton(m_driverController, XboxController.Button.kA.value).
-    //     onTrue(new targetFinding(m_drivetrainSubsystem, m_visionSubsystem));
+    new JoystickButton(m_driverController, XboxController.Button.kA.value).
+        onTrue( Commands.runOnce(
+                () -> {
+                  m_armSubsystem.setGoal(2);
+                  m_armSubsystem.enable();
+                },
+                m_armSubsystem));
 
         // new JoystickButton(m_driverController, XboxController.Button.kB.value).
         // onTrue(new InstantCommand(()-> m_armSubsystem.spinMotor(.1))).
         // onFalse(new InstantCommand(()-> m_armSubsystem.spinMotor(0)));
 
         // new JoystickButton(m_driverController, XboxController.Button.kX.value).
-        // onTrue(new ArmPID(m_armSubsystem, 14)).onTrue(
+        // onTrue(new ArmPIDm_armSubsystem, 14)).onTrue(
         // (new InstantCommand(()-> System.out.print("Button X Hit!"))));
 
         // new JoystickButton(m_driverController, XboxController.Button.kY.value).
