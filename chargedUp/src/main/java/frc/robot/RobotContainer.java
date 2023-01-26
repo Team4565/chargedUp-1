@@ -65,7 +65,7 @@ public class RobotContainer {
     new JoystickButton(m_driverController, XboxController.Button.kA.value).
         onTrue( Commands.runOnce(
                 () -> {
-                  m_armSubsystem.setGoal(2);
+                  m_armSubsystem.setGoal(10);
                   m_armSubsystem.enable();
                 },
                 m_armSubsystem));
@@ -78,8 +78,8 @@ public class RobotContainer {
         // onTrue(new ArmPIDm_armSubsystem, 14)).onTrue(
         // (new InstantCommand(()-> System.out.print("Button X Hit!"))));
 
-        // new JoystickButton(m_driverController, XboxController.Button.kY.value).
-        // onTrue(new InstantCommand(()-> m_armSubsystem.resetPosition()));
+        new JoystickButton(m_driverController, XboxController.Button.kY.value).
+        onTrue(new InstantCommand(()-> m_armSubsystem.resetPosition()));
   }
 
   /**
@@ -87,6 +87,11 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+
+   public void disablePIDSubsystems() {
+    m_armSubsystem.disable();
+  }
+
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     return Autos.exampleAuto(m_exampleSubsystem);
