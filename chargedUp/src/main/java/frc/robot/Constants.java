@@ -17,7 +17,7 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
   public static class DrivetrainConstants{
-    public static final int[] kDrivetrainCANIDs = new int[] {1,2,3,4};
+    public static final int[] kDrivetrainCANIDs = new int[] {5,6,3,4};
 
     public static final boolean kRightInverted = true;
     public static final boolean kLeftInverted = false;
@@ -40,31 +40,18 @@ public final class Constants {
   }
 
   public static class ArmConstants{
-    public static final int[] armCANIDs = new int[] {2};
+    public static final int[] armCANIDs = new int[] {1, 2, 0, 0, 0};
     public static final double kArmPositionConversion = 0;
 
     //Arm PID Values (Tune PID Before Feedforward)
-    public static final double kArmP = 5;
+    public static final double kArmP = 8;
     public static final double kArmI = 0;
     public static final double kArmD = 0;
     public static final double kArmTolerance = 0.5;
 
-    //Arm Feedforward Values 
-    //Static Gain ()
-    public static final double kArmS = 0;
-    //Gravitational Gain (Tune this first, be specific up to 4 decimal places)
-    public static final double kArmG = 0;
-    //Velocity Gain ()
-    public static final double kArmV = 0;
-    //Acceleration Gain ()
-    public static final double kArmA = 0;
-
     //Trapazoidal Motion Profiling
-    public static final double kArmMaxVelocity = 0.5;
-    public static final double kArmMaxAcceleration = 0.5;
-    //Most Likely from Absolute Encoder when Powered On
-    public static final double kOffsetInitialPosition = 0;
-
+    public static final double kArmMaxVelocity = 100;
+    public static final double kArmMaxAcceleration = 100;
     
   }
 }
