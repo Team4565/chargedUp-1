@@ -11,6 +11,7 @@ import frc.robot.commands.targetFinding;
 import frc.robot.commands.DrivetrainPID.MovePID;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -31,7 +32,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
   private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
-
+  private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final XboxController m_driverController =
@@ -59,7 +60,8 @@ public class RobotContainer {
   private void configureBindings() {
     //Spins Motor if April Tags are Recognized for 20 Ticks
     new JoystickButton(m_driverController, XboxController.Button.kA.value).
-        onTrue(new targetFinding(m_drivetrainSubsystem, m_visionSubsystem));
+        onTrue(new RunCommand(()-> m_intakeSubsystem.spinRoller(0.5), m_intakeSubsystem)).
+        onFalse(new RunCommand(()-> m_intakeSubsystem.stopRoller(), m_intakeSubsystem));
   }
 
   /**
