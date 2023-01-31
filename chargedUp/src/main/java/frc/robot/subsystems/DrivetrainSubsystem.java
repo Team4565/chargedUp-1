@@ -11,7 +11,9 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DrivetrainConstants;
@@ -30,7 +32,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private static RelativeEncoder encoderRightLead;
 
   private static DifferentialDrive diffDrive;
-
+  public DifferentialDrivetrainSim m_drivetrainSimulator;
 
 
 
@@ -78,6 +80,16 @@ public class DrivetrainSubsystem extends SubsystemBase {
     
      
     diffDrive = new DifferentialDrive(leftLead, rightLead);
+    
+    if (RobotBase.isSimulation()) { // If our robot is simulated
+      // This class simulates our drivetrain's motion around the field.
+      m_drivetrainSimulator =
+          new DifferentialDrivetrainSim(
+              DriveConstants.kDrivetrainPlant,
+              DriveConstants.kDriveGearbox,
+              DrivetrainConstants.kwheelRadius,
+              DrivetrainConstants.ktrackWidth,
+              DrivetrainConstants.kwheelRadius / 2.0);}
   }
 
 
