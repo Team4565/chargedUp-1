@@ -85,6 +85,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
       // This class simulates our drivetrain's motion around the field.
       m_drivetrainSimulator =
           new DifferentialDrivetrainSim(
+            // todo: will fix :)
               DriveConstants.kDrivetrainPlant,
               DriveConstants.kDriveGearbox,
               DrivetrainConstants.kwheelRadius,
