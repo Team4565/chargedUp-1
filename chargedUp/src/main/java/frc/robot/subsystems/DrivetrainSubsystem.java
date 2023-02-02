@@ -103,5 +103,16 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void SmartDashboardCalls(){
     SmartDashboard.putNumber("Drivetrain Position", this.getPosition());
   }
+
+
+
+public void resetEncoderValue() {
+}
+
+
+
+public int getAvgEncocderDistance() {
+    return 0;
+}
   
 }
