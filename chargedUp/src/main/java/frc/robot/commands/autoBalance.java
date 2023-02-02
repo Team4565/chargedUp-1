@@ -5,12 +5,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.Constants;
 
 public class autoBalance extends CommandBase {
   /** Creates a new autoBalance. */
-  public autoBalance() {
+  public boolean goesForward;
+  private final DrivetrainSubsystem m_DrivetrainSubsystem;
+
+  public autoBalance(DrivetrainSubsystem drivetrainSubsystem, boolean Forwards) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_DrivetrainSubsystem = drivetrainSubsystem;
+    goesForward = Forwards;
+    
+    
+  
   }
 
   // Called when the command is initially scheduled.
@@ -19,7 +28,15 @@ public class autoBalance extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if(goesForward) { 
+      if(m_DrivetrainSubsystem.getPosition() < 1.3)
+      m_DrivetrainSubsystem.setRaw(.2, 0);
+      else {
+        m_DrivetrainSubsystem.setRaw(0, .2);
+      }
+    } 
+  }
 
   // Called once the command ends or is interrupted.
   @Override
