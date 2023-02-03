@@ -70,7 +70,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     encoderRightLead = rightLead.getEncoder();
 
     // todo: uncomment for conversion
-    // encoderRightLead.setPositionConversionFactor(DrivetrainConstants.kTicksToFeat);
+    encoderRightLead.setPositionConversionFactor(DrivetrainConstants.kTicksToFeet);
+    encoderLeftLead.setPositionConversionFactor(DrivetrainConstants.kTicksToFeet);
     rightLead.setInverted(DrivetrainConstants.kRightInverted);
 
     rightFollower1.follow(rightLead);
@@ -92,6 +93,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public void resetPosition(){
     encoderLeftLead.setPosition(0);
+  }
+
+  public double getAvgEncoderDistance() {
+    double averageEncoderDistance = (encoderLeftLead.getPosition() + encoderRightLead.getPosition())/2.0;
+    System.out.println ("averageEncoderDistance" + averageEncoderDistance);
+    return averageEncoderDistance;
   }
   
 

@@ -40,6 +40,9 @@ public class RobotContainer {
   private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
 
 
+  private final Command m_autoBalance =
+  new autoBalance(m_drivetrainSubsystem);
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final XboxController m_driverController =
       new XboxController(OperatorConstants.kDriverControllerPort);
@@ -103,8 +106,8 @@ public class RobotContainer {
     new JoystickButton(m_driverController, XboxController.Button.kA.value).
         onTrue(new targetFinding(m_drivetrainSubsystem, m_visionSubsystem));
 
-    //new JoystickButton(m_driverController, XboxController.Button.kB.value).
-       // onTrue(new autoBalance(m_drivetrainSubsystem));
+    new JoystickButton(m_driverController, XboxController.Button.kB.value).
+        onTrue(new autoBalance(m_drivetrainSubsystem));
   }
 
   /**

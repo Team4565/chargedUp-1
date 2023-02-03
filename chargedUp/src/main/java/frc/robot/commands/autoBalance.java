@@ -13,14 +13,15 @@ public class autoBalance extends CommandBase {
   public boolean goesForward;
   private final DrivetrainSubsystem m_DrivetrainSubsystem;
 
-  public autoBalance(DrivetrainSubsystem drivetrainSubsystem, boolean Forwards) {
+  public autoBalance(DrivetrainSubsystem drivetrainSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_DrivetrainSubsystem = drivetrainSubsystem;
-    goesForward = Forwards;
+    goesForward = true;
     
     
   
   }
+
 
   // Called when the command is initially scheduled.
   @Override
@@ -30,13 +31,19 @@ public class autoBalance extends CommandBase {
   @Override
   public void execute() {
     if(goesForward) { 
-      if(m_DrivetrainSubsystem.getPosition() < 1.3)
+      if(m_DrivetrainSubsystem.getAvgEncoderDistance() < 1.3)
       m_DrivetrainSubsystem.setRaw(.2, 0);
       else {
-        m_DrivetrainSubsystem.setRaw(0, .2);
+        m_DrivetrainSubsystem.setRaw(0, 0);
+      }
+    } else if (!goesForward) {
+      if (m_DrivetrainSubsystem.getAvgEncoderDistance() > 1.3)
+      m_DrivetrainSubsystem.setRaw(-.2, 0);
+      } else {
+        m_DrivetrainSubsystem.setRaw(0, 0);
       }
     } 
-  }
+  
 
   // Called once the command ends or is interrupted.
   @Override

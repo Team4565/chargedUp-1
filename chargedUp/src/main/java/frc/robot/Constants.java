@@ -22,8 +22,10 @@ public final class Constants {
     public static final boolean kRightInverted = false;
     public static final boolean kLeftInverted = true;
 
+    final public static double wheelDiameter = 6.;
+
     // todo: update equation
-    public static final double kTicksToFeat = 0;
+    public static final double kTicksToFeet = 1.0 / 42. * wheelDiameter * 6.11 * Math.PI / 12.;
     public static final double kStopMotors = 0;
 
     //PID Controlls for Forawrds and Backwards
