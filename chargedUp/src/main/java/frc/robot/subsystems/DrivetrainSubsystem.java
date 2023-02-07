@@ -6,7 +6,6 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxRelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -29,7 +28,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
 
   private static RelativeEncoder encoderLeftLead;
-  private static RelativeEncoder encoderRightLead;
+  // private static RelativeEncoder encoderRightLead;
 
   private static DifferentialDrive diffDrive;
   public DifferentialDrivetrainSim m_drivetrainSimulator;
@@ -69,7 +68,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     leftFollower2.follow(leftLead);
 
 
-    encoderRightLead = rightLead.getEncoder();
+    // encoderRightLead = rightLead.getEncoder();
 
     // todo: uncomment for conversion
     // encoderRightLead.setPositionConversionFactor(DrivetrainConstants.kTicksToFeat);
