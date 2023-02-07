@@ -5,7 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxRelativeEncoder;
@@ -24,20 +24,21 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   private static DifferentialDrive diffDrive;
  
-  private final WPI_VictorSPX leftLead;
-  private final WPI_VictorSPX rightLead; 
-  private final WPI_VictorSPX leftFollower;
-  private final WPI_VictorSPX rightFollower;
+  private final WPI_TalonFX leftLead;
+  private final WPI_TalonFX rightLead; 
+  private final WPI_TalonFX leftFollower;
+  private final WPI_TalonFX rightFollower;
 
 
 
   public DrivetrainSubsystem() {
-    leftLead = new WPI_VictorSPX(DrivetrainConstants.kDrivetrainCANIDs[2]);
-    rightLead = new WPI_VictorSPX(DrivetrainConstants.kDrivetrainCANIDs[0]);
-    leftFollower = new WPI_VictorSPX(DrivetrainConstants.kDrivetrainCANIDs[1]);
-    rightFollower = new WPI_VictorSPX(DrivetrainConstants.kDrivetrainCANIDs[3]);
+    leftLead = new WPI_TalonFX(2);
+    rightLead = new WPI_TalonFX(4);
+    leftFollower = new WPI_TalonFX(3);
+    rightFollower = new WPI_TalonFX(5);
 
     leftLead.setInverted(true);
+    leftFollower.setInverted(true);
     leftFollower.follow(leftLead);
 
     
