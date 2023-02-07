@@ -9,10 +9,15 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.hal.SimDevice;
+import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
+import edu.wpi.first.wpilibj.simulation.EncoderSim;
+import edu.wpi.first.wpilibj.simulation.SimDeviceSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DrivetrainConstants;
@@ -28,7 +33,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
 
   private static RelativeEncoder encoderLeftLead;
-  // private static RelativeEncoder encoderRightLead;
+  private static RelativeEncoder encoderRightLead;
 
   private static DifferentialDrive diffDrive;
   public DifferentialDrivetrainSim m_drivetrainSimulator;
@@ -55,8 +60,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
     leftFollower2.setIdleMode(IdleMode.kBrake);
     rightFollower2.setIdleMode(IdleMode.kBrake);
 
-
-
     encoderLeftLead = leftLead.getEncoder();
     
     leftLead.setInverted(DrivetrainConstants.kLeftInverted);
@@ -68,7 +71,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     leftFollower2.follow(leftLead);
 
 
-    // encoderRightLead = rightLead.getEncoder();
+    encoderRightLead = rightLead.getEncoder();
 
     // todo: uncomment for conversion
     // encoderRightLead.setPositionConversionFactor(DrivetrainConstants.kTicksToFeat);
@@ -85,11 +88,20 @@ public class DrivetrainSubsystem extends SubsystemBase {
       m_drivetrainSimulator =
           new DifferentialDrivetrainSim(
             // todo: will fix :)
-              DriveConstants.kDrivetrainPlant,
-              DriveConstants.kDriveGearbox,
+              DCMotor.getNEO(3),
+              DrivetrainConstants.kgearing,
+              DrivetrainConstants.kMOI,
+              DrivetrainConstants.kMass,
               DrivetrainConstants.kwheelRadius,
               DrivetrainConstants.ktrackWidth,
-              DrivetrainConstants.kwheelRadius / 2.0);}
+              // The standard deviations for measurement noise:
+              // x and y:          0.001 m
+              // heading:          0.001 rad
+              // l and r velocity: 0.1   m/s
+              // l and r position: 0.005 m
+              VecBuilder.fill(0.001, 0.001, 0.001, 0.1, 0.1, 0.005, 0.005));}
+
+             
   }
 
 
